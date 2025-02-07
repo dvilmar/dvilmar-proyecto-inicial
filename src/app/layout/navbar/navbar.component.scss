@@ -1,0 +1,10 @@
+.navbar-container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+button[mat-button] {
+    font-weight: 500;
+    text-transform: capitalize;
+}
+ 
