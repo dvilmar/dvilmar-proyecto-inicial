@@ -1,16 +1,27 @@
-@use 'bootstrap/scss/bootstrap';
-
-@use '@angular/material' as mat;
+@use 'bootstrap/scss/bootstrap'; 
+@use '@angular/material' as mat; 
 @use '_theme-colors' as colors;
 
-html {
-    color-scheme: light dark;
-    @include mat.theme((
-        color: (
-            primary: colors.$primary-palette,
-            tertiary: colors.$tertiary-palette,
-        ),
-        typography: Roboto,
-        density: 0
-    ));
+$light-theme: mat.define-theme(( 
+    color: (
+        theme-type: light,
+        primary: colors.$primary-palette, 
+        tertiary: colors.$tertiary-palette,
+    )
+));
+
+$dark-theme: mat.define-theme((
+    color: (
+        theme-type: dark,
+        primary: colors.$primary-palette, 
+        tertiary: colors.$tertiary-palette,
+    )
+));
+
+:root {
+    @include mat.all-component-themes ($light-theme);
+}
+
+.dark-theme{
+    @include mat.all-component-themes ($dark-theme);
 }

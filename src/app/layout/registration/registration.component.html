@@ -1,0 +1,174 @@
+<h1 class="text-left">Registro de Usuario</h1>
+<p class="text-left">Por favor, completa los campos a continuación</p>
+
+
+<div class="container mt-5">
+ <div class="row justify-content-center">
+   <div class="col-md-8 col-lg-6">
+     <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+       <div class="row">
+         <!-- Nombre -->
+         <div class="col-md-6">
+           <mat-form-field appearance="fill" class="full-width">
+             <mat-label>Nombre</mat-label>
+             <input matInput formControlName="firstName" type="text" />
+             <mat-error
+               *ngIf="registrationForm.get('firstName')?.hasError('required')"
+             >
+               El nombre es obligatorio
+             </mat-error>
+           </mat-form-field>
+         </div>
+
+
+         <!-- Apellido -->
+         <div class="col-md-6">
+           <mat-form-field appearance="fill" class="full-width">
+             <mat-label>Apellido</mat-label>
+             <input matInput formControlName="lastName" type="text" />
+             <mat-error
+               *ngIf="registrationForm.get('lastName')?.hasError('required')"
+             >
+               El apellido es obligatorio
+             </mat-error>
+           </mat-form-field>
+         </div>
+       </div>
+
+
+       <div class="row">
+         <!-- Correo Electrónico -->
+         <div class="col-md-12">
+           <mat-form-field appearance="fill" class="full-width">
+             <mat-label>Correo Electrónico</mat-label>
+             <input matInput formControlName="email" type="email" />
+             <mat-error
+               *ngIf="registrationForm.get('email')?.hasError('required')"
+             >
+               El correo electrónico es obligatorio
+             </mat-error>
+             <mat-error
+               *ngIf="registrationForm.get('email')?.hasError('email')"
+             >
+               Introduce un correo electrónico válido
+             </mat-error>
+           </mat-form-field>
+         </div>
+       </div>
+
+
+       <div class="row">
+         <!-- Fecha de Nacimiento -->
+         <div class="col-md-6">
+           <mat-form-field appearance="fill" class="full-width" color="accent">
+             <mat-label>Fecha de Nacimiento</mat-label>
+             <input
+               matInput
+               [matDatepicker]="picker"
+               formControlName="birthDate"
+             />
+             <mat-datepicker-toggle
+               matSuffix
+               [for]="picker"
+             ></mat-datepicker-toggle>
+             <mat-datepicker #picker></mat-datepicker>
+             <mat-error
+               *ngIf="registrationForm.get('birthDate')?.hasError('required')"
+             >
+               La fecha de nacimiento es obligatoria
+             </mat-error>
+           </mat-form-field>
+         </div>
+
+
+         <!-- Comunidad Autónoma -->
+         <div class="col-md-6">
+           <mat-form-field appearance="fill" class="full-width">
+             <mat-label>Comunidad Autónoma</mat-label>
+             <mat-select formControlName="regionId">
+               <mat-option *ngFor="let region of regions" [value]="region.id">
+                 {{ region.name }}
+               </mat-option>
+             </mat-select>
+             <mat-error
+               *ngIf="registrationForm.get('regionId')?.hasError('required')"
+             >
+               Selecciona una comunidad autónoma
+             </mat-error>
+           </mat-form-field>
+         </div>
+       </div>
+
+
+       <div class="row">
+         <!-- Contraseña -->
+         <div class="col-md-6">
+           <mat-form-field appearance="fill" class="full-width">
+             <mat-label>Contraseña</mat-label>
+             <input matInput formControlName="password" type="password" />
+             <mat-error
+               *ngIf="registrationForm.get('password')?.hasError('required')"
+             >
+               La contraseña es obligatoria
+             </mat-error>
+             <mat-error
+               *ngIf="registrationForm.get('password')?.hasError('minlength')"
+             >
+               La contraseña debe tener al menos 6 caracteres
+             </mat-error>
+           </mat-form-field>
+         </div>
+
+
+         <!-- Confirmar Contraseña -->
+         <div class="col-md-6">
+           <mat-form-field appearance="fill" class="full-width">
+             <mat-label>Confirmar Contraseña</mat-label>
+             <input
+               matInput
+               formControlName="confirmPassword"
+               type="password"
+             />
+             <mat-error
+               *ngIf="
+                 registrationForm.get('confirmPassword')?.hasError('required')
+               "
+             >
+               La confirmación de contraseña es obligatoria
+             </mat-error>
+             <mat-error
+               *ngIf="
+                 registrationForm
+                   .get('confirmPassword')
+                   ?.hasError('passwordsMismatch')
+               "
+             >
+               Las contraseñas no coinciden
+             </mat-error>
+           </mat-form-field>
+         </div>
+       </div>
+
+
+       <div class="row mt-4">
+         <!-- Botón de Enviar -->
+         <div class="col-md-12 text-end">
+           <button
+             mat-raised-button
+             color="primary"
+             type="submit"
+             [disabled]="registrationForm.invalid"
+           >
+             Registrarse
+           </button>
+         </div>
+       </div>
+     </form>
+     <!-- Mostrar datos enviados -->
+     <div *ngIf="submittedData" class="mt-4">
+       <h2>Datos Enviados:</h2>
+       <pre>{{ submittedData | json }}</pre>
+     </div>
+   </div>
+ </div>
+</div>

@@ -1,22 +1,52 @@
+/* Modo Claro (Por Defecto) */
 .layout-container {
-    display: flex;
-    flex-direction: row;
-    height: calc(100vh - 128px); /* Altura completa menos Header y Footer */
+ display: flex;
+ flex-direction: row;
+ height: calc(100vh - 128px); /* Altura completa menos Header y Footer */
 }
+
+
 .sidebar {
-    width: 240px; /* Ancho del Sidebar */
-    background-color: #f4f4f4;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+ width: 240px; /* Ancho del Sidebar */
+ box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
+
+
 .main-content {
-    flex-grow: 1;
-    padding: 16px;
-    background-color: #f9f9f9;
-    overflow-y: auto;
+ flex-grow: 1;
+ padding: 16px;
+ background-color: #f9f9f9;
+ overflow-y: auto;
 }
- 
+
+
 .main-container {
-    padding: 16px;
-    background-color: #ffffff;
-    border-radius: 0 2px 5px rgba(0, 0, 0, 0.1);
+ padding: 16px;
+ background-color: #ffffff;
+ border-radius: 8px;
+ box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Modo Oscuro */
+:host-context(.dark-theme) .layout-container {
+ background-color: #121212 !important; /* Fondo oscuro general */
+}
+
+
+:host-context(.dark-theme) .sidebar {
+ background-color: #1e1e1e !important; /* Sidebar más oscuro */
+ box-shadow: 2px 0 5px rgba(255, 255, 255, 0.1) !important;
+}
+
+
+:host-context(.dark-theme) .main-content {
+ background-color: #222222 !important; /* Fondo oscuro */
+}
+
+
+:host-context(.dark-theme) .main-container {
+ background-color: #1e1e1e !important; /* Fondo del contenedor principal */
+ box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1) !important;
+ color: #e0e0e0 !important; /* Texto claro en modo oscuro */
 }

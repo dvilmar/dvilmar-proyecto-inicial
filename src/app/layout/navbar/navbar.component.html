@@ -24,4 +24,9 @@
             <span>Logout</span>
         </button>
     </mat-menu>
+
+    <button mat-icon-button (click)="toogleTheme()">
+        <mat-icon *ngIf="!isDarkMode">light_mode</mat-icon>
+        <mat-icon *ngIf="isDarkMode">dark_mode</mat-icon>
+    </button>
 </nav>
